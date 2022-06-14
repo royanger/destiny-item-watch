@@ -15,6 +15,10 @@
 # production
 /build
 
+# ssl certs
+/certs
+/certificates
+
 # misc
 .DS_Store
 *.pem
@@ -26,6 +30,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
