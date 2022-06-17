@@ -4,5 +4,11 @@ node_modules
 /build
 /public/build
 .env
+.env.local
+.env.development.local
 
 .vercel
+
+/api/index.js
+/api/index.js.map
+/app/styles/tailwind.css
