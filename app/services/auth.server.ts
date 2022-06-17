@@ -1,9 +1,16 @@
 import { Authenticator } from 'remix-auth'
 import { sessionStorage } from '~/services/session.server'
 import { BungieStrategy } from 'remix-auth-bungie'
-import type { BungieProfile } from 'remix-auth-bungie'
+import { createOrUpdateUser } from '~/queries/auth'
 
-export type User = BungieProfile
+export type User = {
+   id: number
+   createdAt: Date
+   updatedAt: Date
+   membershipId: string
+   email: string
+   displayName: string
+}
 
 export let authenticator = new Authenticator<User>(sessionStorage)
 
@@ -24,7 +31,11 @@ authenticator.use(
          apiKey: process.env.BUNGIE_APIKEY,
       },
       async ({ profile }) => {
-         return profile
+         const userProfile = await createOrUpdateUser(
+            profile.bungieNetUser.membershipId,
+            profile.bungieNetUser.displayName
+         )
+         return userProfile
       }
    )
 )
