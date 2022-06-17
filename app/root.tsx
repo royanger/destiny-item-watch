@@ -12,7 +12,7 @@ import tailwind from './styles/tailwind.css'
 
 export const meta: MetaFunction = () => ({
    charset: 'utf-8',
-   title: 'New Remix App',
+   title: 'Destiny Item Watch',
    viewport: 'width=device-width,initial-scale=1',
 })
 
@@ -20,6 +20,7 @@ export function links() {
    return [
       { rel: 'stylesheet', href: styles },
       { rel: 'stylesheet', href: tailwind },
+      { rel: 'icon', href: '/images/favicon/favicon.ico', type: 'image/ico' },
    ]
 }
 

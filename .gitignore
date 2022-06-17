@@ -12,5 +12,6 @@ node_modules
 /api/index.js
 /api/index.js.map
 /app/styles/tailwind.css
+/app/styles/styles.css
 
 /prisma/migrations
