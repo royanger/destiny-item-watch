@@ -32,6 +32,7 @@ export default function App() {
             <Links />
          </head>
          <body>
+            <div className="bgimage"></div>
             <Outlet />
             <ScrollRestoration />
             <Scripts />

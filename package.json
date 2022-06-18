@@ -4,12 +4,12 @@
    "scripts": {
       "build": "npm run build:tailwind && npm run build:css && npm run build:remix",
       "build:remix": "remix build",
-      "build:css": "postcss styles/custom/styles.css --dir app/styles --env production",
+      "build:css": "postcss styles/styles.css --dir app/styles --env production",
       "build:tailwind": "npm run generate:tailwind -- --minify",
       "dev": "concurrently \"npm run dev:tailwind\" \"npm run dev:css\" \"npm run dev:remix\"",
       "dev:remix": "remix dev",
-      "dev:css": "postcss styles/custom/styles.css --dir app/styles -w",
-      "dev:tailwind": "npm run generate:tailwind --  --watch",
+      "dev:css": "postcss styles/styles.css --dir app/styles -w",
+      "dev:tailwind": "npm run generate:tailwind -- --watch",
       "generate:tailwind": "tailwindcss -o ./app/styles/tailwind.css --config ./config/tailwind.config.js",
       "prisma": "npx prisma generate",
       "start": "remix-serve build"

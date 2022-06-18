@@ -3,9 +3,8 @@ module.exports = {
    content: ['./app/**/*.{js,ts,jsx,tsx}'],
    theme: {
       fontFamily: {
-         body: ['Lato', 'sans-serif'],
-         title: ['Montserrat', 'sans-serif'],
-         input: ['Mali', 'sans-serif'],
+         body: ['Manrope', 'sans-serif'],
+         title: ['Quicksand', 'sans-serif'],
       },
       colors: {
          transparent: 'transparent',
