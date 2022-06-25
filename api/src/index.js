@@ -7,7 +7,6 @@ import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { PrismaClient } from '@prisma/client';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
-import { v4 as uuidv4 } from 'uuid';
 import cors from 'cors';
 
 dotenv.config();
@@ -36,27 +35,10 @@ app.use(
    })
 );
 
-// app.use(
-//    session({
-//       genid: req => uuidv4(),
-//       name: 'destinywatch',
-//       secret: SECRET,
-//       resave: false,
-//       saveUninitialized: false,
-//       cookie: {
-//          httpOnly: true,
-//          //  secure: true,
-//          //  sameSite: true,
-//          maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
-//       },
-//    })
-// );
-
 app.use(
    cors({
-      origin: 'http://localhost:3000',
+      origin: process.env.APP_URL,
       credentials: true,
-      // methods: ['GET', 'PORT'],
    })
 );
 
@@ -102,8 +84,8 @@ app.get('/auth/logout', authLogout);
 https
    .createServer(
       {
-         key: fs.readFileSync('./certs/key.pem'),
-         cert: fs.readFileSync('./certs/cert.pem'),
+         key: fs.readFileSync('./src/certs/key.pem'),
+         cert: fs.readFileSync('./src/certs/cert.pem'),
          passphrase: process.env.CERT_PASSPHRASE,
       },
       app

@@ -2,39 +2,37 @@ import * as React from 'react';
 import { axiosConfig as axios } from '../axios';
 import md5 from 'md5';
 
-const AuthContext = React.createContext(false);
+const AuthContext = React.createContext(undefined);
 
-const AuthProvider = props => {
+type AuthProfile = {
+   isAuthenticated: boolean;
+   id: number;
+   displayName: string | null;
+   uniqueName: string | null;
+};
+
+const AuthProvider = (props: { children: React.ReactNode }) => {
    const [loading, setLoading] = React.useState(true);
    const [authInfo, setAuthInfo] = React.useState({
       isAuthenticated: false,
-      userId: null,
-      email: null,
-      givenName: null,
-      familyName: null,
-      gravatar: null,
+      // ...nullValues,
    });
 
    const fetch = async () => {
       try {
-         const res = await axios.get('/auth/authcheck');
-         // let gravatar;
-         // if (res.data.user.email !== undefined) {
-         //    const hashedEmail = md5(res.data.user.email);
-         //    gravatar = `https://www.gravatar.com/avatar/${hashedEmail}.jpg?s=150&d=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2015%2F10%2F05%2F22%2F37%2Fblank-profile-picture-973460_960_720.png`;
-         // }
+         const res = await axios.get(`/auth/check`);
+
          setAuthInfo(prevState => ({
             ...prevState,
             ...res.data.user,
-            // gravatar,
          }));
          setLoading(false);
       } catch (error) {
-         const data =
-            error.response && error.response.data.message
-               ? error.response.data.message
-               : error.message;
-         console.log('error', data);
+         // const data =
+         //    error?.response && error.response.data.message
+         //       ? error.response.data.message
+         //       : error.message;
+         console.log('error', error);
       }
    };
 

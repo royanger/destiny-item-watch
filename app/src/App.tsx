@@ -1,21 +1,29 @@
-import { ReactLocation, Router, Outlet } from '@tanstack/react-location';
-// import { ReactLocationDevtools } from '@tanstack/react-location-devtools'
 import { useQuery, QueryClient } from 'react-query';
 import axios from 'axios';
+// import { useAuth } from './lib/context/authContext';
+import { Routes, Route, Link } from 'react-router-dom';
+import { useAuth } from './lib/context/authContext';
 
 import { Index } from './pages/Index';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
+import { Layout } from './components/Layout';
+import { Character } from './pages/Character';
+import { Watched } from './pages/Watched';
+import { NotFound } from './pages/404';
 
 // import Tailwind and CSS
 import './styles/tailwind.css';
 import './styles/index.css';
 
-const location = new ReactLocation();
-
-// const queryClient = new QueryClient()
-
 function App() {
+   const {
+      authInfo: { isAuthenticated },
+   } = useAuth();
+   // const { loading } = useAuth();
+
+   // if (loading) return <div className="loader-container">Loading...</div>;
+
    const config = {
       withCredentials: true,
       headers: {
@@ -34,16 +42,16 @@ function App() {
    // }
 
    return (
-      <Router
-         location={location}
-         routes={[
-            { path: '/', element: <Index /> },
-            { path: '/login', element: <Login /> },
-            { path: '/dashboard', element: <Dashboard /> },
-         ]}
-      >
-         <Outlet />
-      </Router>
+      <Routes>
+         <Route path="/" element={<Index />} />
+         <Route path="/login" element={<Login />} />
+         <Route path="/dashboard" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="character" element={<Character />} />
+            <Route path="watched" element={<Watched />} />
+         </Route>
+         <Route path="*" element={<NotFound />} />
+      </Routes>
    );
 }
 

@@ -1,12 +1,12 @@
-import * as React from 'react'
-import NavItem from './NavItem'
-import { LogoutButton } from './LogoutButton'
+import * as React from 'react';
+import { NavItem } from './NavItem';
+import { LogoutButton } from './LogoutButton';
 
 export function NavBar() {
    const links = [
       { name: 'Items Watched', link: '/dashboard/watching' },
       { name: 'Add Items', link: '/dashboard' },
-   ]
+   ];
 
    return (
       <nav className="flex flew-row items-center ml-4 w-full">
@@ -16,10 +16,10 @@ export function NavBar() {
                   <React.Fragment key={index}>
                      <NavItem name={item.name} link={item.link} />
                   </React.Fragment>
-               )
+               );
             })}
          </ul>
          <LogoutButton />
       </nav>
-   )
+   );
 }

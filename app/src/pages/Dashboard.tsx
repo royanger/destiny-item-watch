@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Header } from '../components/Header/';
 import axios from 'axios';
+import { useAuth } from '../lib/context/authContext';
 
 export const Dashboard = () => {
    const [user, setUser] = React.useState({});
@@ -19,7 +20,7 @@ export const Dashboard = () => {
 
    return (
       <>
-         <Header />
+         <p>Hi there</p>
       </>
    );
 };
