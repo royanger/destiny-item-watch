@@ -1,4 +1,4 @@
-export const Watched = () => {
+export const Watching = () => {
    return (
       <div>
          <h2>Watched Items</h2>

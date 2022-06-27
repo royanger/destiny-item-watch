@@ -21,7 +21,7 @@ app.use(cookieParser(SECRET));
 app.use(
    session({
       cookie: {
-         maxAge: 7 * 24 * 60 * 60, // 7 days
+         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       },
       secret: SECRET,
       resave: true,
@@ -57,6 +57,10 @@ passportBungie(passport);
 
 // import { passportGitHub } from './lib/auth/GitHubStrategy.js';
 // passportGitHub(passport);
+
+app.get('/hello-there', (req, res) => {
+   res.json({ who: 'Obi-Wan Kenobi' });
+});
 
 app.get('/auth/bungie', passport.authenticate('bungie'));
 // app.get('/auth/github', passport.authenticate('github'));

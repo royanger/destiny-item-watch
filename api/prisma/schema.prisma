@@ -19,11 +19,24 @@ model Session {
 }
 
 model User {
-   id             Int         @id @default(autoincrement())
-   createdAt      DateTime    @default(now())
-   updatedAt      DateTime    @updatedAt
-   membershipId   String      @unique
-   uniqueName     String
-   displayName    String
-   email          String?
+   id                            String      @id @default(uuid())
+   createdAt                     DateTime    @default(now())
+   updatedAt                     DateTime    @updatedAt
+   membershipId                  String      @unique
+   uniqueName                    String
+   displayName                   String
+   email                         String?
+   selectedDestinyMembership     String?
+   selectedDestinyMembershipType String?
+   destinyMemberships            DestinyMemberships[]
+}
+
+model DestinyMemberships {
+   id                String      @id @default(uuid())
+   userId            String
+   user              User        @relation(fields: [userId], references: [id])
+   membershipId      String      @unique
+   displayName       String
+   membershipType    Int
+   logo              String
 }

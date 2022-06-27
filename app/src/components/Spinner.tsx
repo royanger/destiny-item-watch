@@ -4,8 +4,6 @@ type DotSpinner = {
 };
 
 const DotSpinner = ({ ratio, message }: DotSpinner) => {
-   console.log('ratio', ratio);
-
    const newSize = ratio / 100;
    const cssValues = {
       '--newSize': newSize,

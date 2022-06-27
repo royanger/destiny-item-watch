@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { LoginButton } from '../components/Buttons/LoginButton';
 
 export function Index() {
    return (
@@ -9,11 +10,7 @@ export function Index() {
             This landing page is a work in progress and no where near its final
             form.
          </p>
-         <Link to="/login">
-            <button className="mt-12 py-4 px-6 bg-yellow border-0 text-black font-body font-bold text-2xl">
-               Login
-            </button>
-         </Link>
+         <LoginButton />
       </div>
    );
 }

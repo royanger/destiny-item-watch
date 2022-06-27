@@ -5,7 +5,7 @@ import { LogoutButton } from './LogoutButton';
 export function NavBar() {
    const links = [
       { name: 'Items Watched', link: '/dashboard/watching' },
-      { name: 'Add Items', link: '/dashboard' },
+      { name: 'Add Items', link: '/dashboard/additems' },
    ];
 
    return (

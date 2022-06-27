@@ -8,13 +8,14 @@ import { Index } from './pages/Index';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { Layout } from './components/Layout';
-import { Character } from './pages/Character';
-import { Watched } from './pages/Watched';
+import { AddItems } from './pages/AddItems';
+import { Watching } from './pages/Watching';
 import { NotFound } from './pages/404';
 
 // import Tailwind and CSS
 import './styles/tailwind.css';
 import './styles/index.css';
+import { RequireAuth } from './components/RequireAuth';
 
 function App() {
    const {
@@ -31,7 +32,7 @@ function App() {
       },
    };
    const { isLoading, error, data } = useQuery('auth', () =>
-      fetch(`${import.meta.env.VITE_API_URL}/auth/check`, {
+      fetch(`${$API_URL}/auth/check`, {
          credentials: 'include',
       }).then(res => res.json())
    );
@@ -45,10 +46,17 @@ function App() {
       <Routes>
          <Route path="/" element={<Index />} />
          <Route path="/login" element={<Login />} />
-         <Route path="/dashboard" element={<Layout />}>
+         <Route
+            path="/dashboard"
+            element={
+               <RequireAuth>
+                  <Layout />
+               </RequireAuth>
+            }
+         >
             <Route index element={<Dashboard />} />
-            <Route path="character" element={<Character />} />
-            <Route path="watched" element={<Watched />} />
+            <Route path="additems" element={<AddItems />} />
+            <Route path="watching" element={<Watching />} />
          </Route>
          <Route path="*" element={<NotFound />} />
       </Routes>

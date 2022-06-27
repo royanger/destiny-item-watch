@@ -32,7 +32,7 @@ const AuthProvider = (props: { children: React.ReactNode }) => {
          //    error?.response && error.response.data.message
          //       ? error.response.data.message
          //       : error.message;
-         console.log('error', error);
+         console.error('error', error);
       }
    };
 
