@@ -2,11 +2,23 @@ import * as React from 'react';
 import { axiosConfig as axios } from '~/lib/axios';
 import md5 from 'md5';
 
-const AuthContext = React.createContext(undefined);
+const AuthContext = React.createContext<ContextValue>({
+   authInfo: {
+      isAuthenticated: false,
+      id: null,
+      displayName: null,
+      uniqueName: null,
+   },
+   loading: false,
+});
 
+type ContextValue = {
+   authInfo: AuthProfile;
+   loading: boolean;
+};
 type AuthProfile = {
    isAuthenticated: boolean;
-   id: number;
+   id: number | null;
    displayName: string | null;
    uniqueName: string | null;
 };
@@ -40,6 +52,9 @@ const AuthProvider = (props: { children: React.ReactNode }) => {
       fetch();
    }, []);
 
+   // TODO
+   // I can probably remove this as right now I am just using
+   // axios in the component
    const logout = async () => {
       try {
          await axios.post('auth/logout');
@@ -52,7 +67,8 @@ const AuthProvider = (props: { children: React.ReactNode }) => {
       }
    };
 
-   const contextValue = { authInfo, loading, logout };
+   // const contextValue = { authInfo, loading, logout };
+   const contextValue = { authInfo, loading } as ContextValue;
 
    return <AuthContext.Provider value={contextValue} {...props} />;
 };

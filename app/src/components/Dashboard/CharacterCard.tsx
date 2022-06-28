@@ -6,10 +6,6 @@ export const CharacterCard = ({
    emblemBGPath,
    emblemColor,
 }: CharacterCard) => {
-   console.log(
-      'color',
-      `rgba(${emblemColor.red}, ${emblemColor.green}, ${emblemColor.blue}, ${emblemColor.alpha}, )`
-   );
    return (
       <div
          className="w-[474px] h-24 relative"

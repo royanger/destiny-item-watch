@@ -37,15 +37,15 @@ export const Characters = () => {
          <h2>Characters</h2>
          <div className="flex flex-col gap-y-14">
             {Object.values(data?.data?.Response?.characters.data).map(
-               (c, index) => (
+               (character: any, index: number) => (
                   <CharacterCard
-                     key={c.characterId}
-                     charClass={c.classHash}
-                     power={c.light}
-                     race={c.raceHash}
-                     emblemURL={c.emblemPath}
-                     emblemBGPath={c.emblemBackgroundPath}
-                     emblemColor={c.emblemColor}
+                     key={character.characterId}
+                     charClass={character.classHash}
+                     power={character.light}
+                     race={character.raceHash}
+                     emblemURL={character.emblemPath}
+                     emblemBGPath={character.emblemBackgroundPath}
+                     emblemColor={character.emblemColor}
                   />
                )
             )}
