@@ -1,4 +1,6 @@
-export const LoginButton = () => {
+export type LoginButton = { title: string };
+
+export const LoginButton = ({ title }: LoginButton) => {
    const loginCallback = () => {
       window.open(`${$API_URL}/auth/bungie`, '_self');
    };
@@ -13,7 +15,7 @@ export const LoginButton = () => {
             className="py-4 px-6 bg-yellow border-0 text-black font-body font-bold text-2xl"
             onClick={() => loginCallback()}
          >
-            Login
+            {title}
          </button>
          {/* <div className="App">
             <button onClick={() => loginCallbackGitHub()}>

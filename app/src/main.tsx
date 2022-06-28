@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { AuthProvider } from './lib/context/authContext';
 import { BrowserRouter } from 'react-router-dom';
+import './configs/i18n';
 
 import App from './App';
 
