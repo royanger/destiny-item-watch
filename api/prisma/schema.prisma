@@ -39,4 +39,19 @@ model DestinyMemberships {
    displayName       String
    membershipType    Int
    logo              String
+   // Characters        Characters[]
 }
+
+// model Characters {
+//    id                   String               @id @default(uuid())
+//    destinyMembershipId  String
+//    destinyMembership    DestinyMemberships   @relation(fields:[destinyMembershipId], references: [id])
+//    characterId          String               @unique
+//    raceHash             BigInt
+//    raceType             Int
+//    genderHash           BigInt
+//    genderType           Int
+//    classHash            BigInt
+//    classType            Int
+
+// }
