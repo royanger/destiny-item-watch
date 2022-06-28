@@ -18,49 +18,49 @@ import './styles/index.css';
 import { RequireAuth } from './components/RequireAuth';
 
 function App() {
-   const {
-      authInfo: { isAuthenticated },
-   } = useAuth();
-   // const { loading } = useAuth();
+	const {
+		authInfo: { isAuthenticated },
+	} = useAuth();
+	// const { loading } = useAuth();
 
-   // if (loading) return <div className="loader-container">Loading...</div>;
+	// if (loading) return <div className="loader-container">Loading...</div>;
 
-   const config = {
-      withCredentials: true,
-      headers: {
-         'Content-type': 'application/json',
-      },
-   };
-   const { isLoading, error, data } = useQuery('auth', () =>
-      fetch(`${$API_URL}/auth/check`, {
-         credentials: 'include',
-      }).then(res => res.json())
-   );
+	const config = {
+		withCredentials: true,
+		headers: {
+			'Content-type': 'application/json',
+		},
+	};
+	const { isLoading, error, data } = useQuery('auth', () =>
+		fetch(`${$API_URL}/auth/check`, {
+			credentials: 'include',
+		}).then(res => res.json())
+	);
 
-   // if (isLoading) return <div>Loading...</div>;
-   // if (error) {
-   //    console.error('react-query', error);
-   // }
+	// if (isLoading) return <div>Loading...</div>;
+	// if (error) {
+	//    console.error('react-query', error);
+	// }
 
-   return (
-      <Routes>
-         <Route path="/" element={<Index />} />
-         <Route path="/login" element={<Login />} />
-         <Route
-            path="/dashboard"
-            element={
-               <RequireAuth>
-                  <Layout />
-               </RequireAuth>
-            }
-         >
-            <Route index element={<Dashboard />} />
-            <Route path="additems" element={<AddItems />} />
-            <Route path="watching" element={<Watching />} />
-         </Route>
-         <Route path="*" element={<NotFound />} />
-      </Routes>
-   );
+	return (
+		<Routes>
+			<Route path="/" element={<Index />} />
+			<Route path="/login" element={<Login />} />
+			<Route
+				path="/dashboard"
+				element={
+					<RequireAuth>
+						<Layout />
+					</RequireAuth>
+				}
+			>
+				<Route index element={<Dashboard />} />
+				<Route path="additems" element={<AddItems />} />
+				<Route path="watching" element={<Watching />} />
+			</Route>
+			<Route path="*" element={<NotFound />} />
+		</Routes>
+	);
 }
 
 export default App;
