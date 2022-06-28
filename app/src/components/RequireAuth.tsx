@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../lib/context/authContext';
-import DotSpinner from './Spinner';
+import { useAuth } from '~/lib/context/authContext';
+import DotSpinner from '~/components/Spinner';
 
 export const RequireAuth = ({ children }: { children: JSX.Element }) => {
    const {

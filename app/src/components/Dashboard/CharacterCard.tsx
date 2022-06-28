@@ -1,17 +1,3 @@
-export type CharacterCard = {
-   charClass: string;
-   power: number;
-   race: string;
-   emblemURL: string;
-   emblemBGPath: string;
-   emblemColor: {
-      red: number;
-      green: number;
-      blue: number;
-      alpha: number;
-   };
-};
-
 export const CharacterCard = ({
    charClass,
    race,

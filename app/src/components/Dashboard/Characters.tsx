@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
-import { CharacterCard } from './CharacterCard';
+import { CharacterCard } from '~/components/Dashboard/CharacterCard';
 import axios from 'axios';
+import DotSpinner from '~/components/Spinner';
 
 export const Characters = () => {
    const mockData = [

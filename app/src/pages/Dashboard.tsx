@@ -1,4 +1,4 @@
-import { Characters } from '../components/Dashboard/Characters';
+import { Characters } from '~/components/Dashboard/Characters';
 
 export const Dashboard = () => {
    return (

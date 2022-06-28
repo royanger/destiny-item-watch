@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { axiosConfig as axios } from '../axios';
+import { axiosConfig as axios } from '~/lib/axios';
 import md5 from 'md5';
 
 const AuthContext = React.createContext(undefined);

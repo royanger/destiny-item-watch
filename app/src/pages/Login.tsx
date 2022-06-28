@@ -1,4 +1,4 @@
-import { LoginButton } from '../components/Buttons/LoginButton';
+import { LoginButton } from '~/components/Buttons/LoginButton';
 
 export function Login() {
    return (
@@ -11,7 +11,7 @@ export function Login() {
                   alt="Destiny Item Watch"
                />
             </div>
-            <LoginButton />
+            <LoginButton title="Login" />
             <p className="mt-12 w-1/3 text-xl">
                Destiny Item Watch requires access to some of your character and
                account information. Please log in using your Bungie account.

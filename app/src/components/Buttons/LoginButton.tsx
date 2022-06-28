@@ -1,5 +1,3 @@
-export type LoginButton = { title: string };
-
 export const LoginButton = ({ title }: LoginButton) => {
    const loginCallback = () => {
       window.open(`${$API_URL}/auth/bungie`, '_self');
