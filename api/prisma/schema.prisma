@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider           = "mysql"
+  url                = env("DATABASE_URL")
+  shadowDatabaseUrl  = env("SHADOWDB_URL")
+}
+
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt   DateTime
+}
+
+model User {
+   id                            String      @id @default(uuid())
+   createdAt                     DateTime    @default(now())
+   updatedAt                     DateTime    @updatedAt
+   membershipId                  String      @unique
+   uniqueName                    String
+   displayName                   String
+   email                         String?
+   selectedDestinyMembership     String?
+   selectedDestinyMembershipType String?
+   destinyMemberships            DestinyMemberships[]
+}
+
+model DestinyMemberships {
+   id                String      @id @default(uuid())
+   userId            String
+   user              User        @relation(fields: [userId], references: [id])
+   membershipId      String      @unique
+   displayName       String
+   membershipType    Int
+   logo              String
+   // Characters        Characters[]
+}
+
+// model Characters {
+//    id                   String               @id @default(uuid())
+//    destinyMembershipId  String
+//    destinyMembership    DestinyMemberships   @relation(fields:[destinyMembershipId], references: [id])
+//    characterId          String               @unique
+//    raceHash             BigInt
+//    raceType             Int
+//    genderHash           BigInt
+//    genderType           Int
+//    classHash            BigInt
+//    classType            Int
+
+// }
