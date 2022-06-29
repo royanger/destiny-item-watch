@@ -12,34 +12,34 @@ import cors from 'cors';
 dotenv.config();
 
 const SECRET = process.env.SECRET;
-const PORT = 3001;
-const URL = 'localhost';
+const PORT = process.env.PORT || 3000;
+const URL = process.env.URL;
 
 const app = express();
 
 app.use(cookieParser(SECRET));
 app.use(
-   session({
-      cookie: {
-         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      },
-      secret: SECRET,
-      resave: true,
-      saveUninitialized: true,
-      domain: 'localhost',
-      store: new PrismaSessionStore(new PrismaClient(), {
-         checkPeriod: 2 * 60 * 1000,
-         dbRecordIdIsSessionId: true,
-         dbRecordIdFunction: undefined,
-      }),
-   })
+	session({
+		cookie: {
+			maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+		},
+		secret: SECRET,
+		resave: true,
+		saveUninitialized: true,
+		domain: 'localhost',
+		store: new PrismaSessionStore(new PrismaClient(), {
+			checkPeriod: 2 * 60 * 1000,
+			dbRecordIdIsSessionId: true,
+			dbRecordIdFunction: undefined,
+		}),
+	})
 );
 
 app.use(
-   cors({
-      origin: process.env.APP_URL,
-      credentials: true,
-   })
+	cors({
+		origin: process.env.APP_URL,
+		credentials: true,
+	})
 );
 
 app.enable('trust proxy');
@@ -59,18 +59,18 @@ passportBungie(passport);
 // passportGitHub(passport);
 
 app.get('/hello-there', (req, res) => {
-   res.json({ who: 'Obi-Wan Kenobi' });
+	res.json({ who: 'Obi-Wan Kenobi' });
 });
 
 app.get('/auth/bungie', passport.authenticate('bungie'));
 // app.get('/auth/github', passport.authenticate('github'));
 
 app.get(
-   '/auth/callback/bungie',
-   passport.authenticate('bungie', { failureRedirect: '/failed' }),
-   function (req, res) {
-      res.redirect(`${process.env.APP_URL}/dashboard`);
-   }
+	'/auth/callback/bungie',
+	passport.authenticate('bungie', { failureRedirect: '/failed' }),
+	function (req, res) {
+		res.redirect(`${process.env.APP_URL}/dashboard`);
+	}
 );
 
 // app.get(
@@ -85,15 +85,23 @@ import { authCheck, authLogout } from './routes/auth.js';
 app.get('/auth/check', authCheck);
 app.get('/auth/logout', authLogout);
 
-https
-   .createServer(
-      {
-         key: fs.readFileSync('./src/certs/key.pem'),
-         cert: fs.readFileSync('./src/certs/cert.pem'),
-         passphrase: process.env.CERT_PASSPHRASE,
-      },
-      app
-   )
-   .listen(PORT, URL, () => {
-      console.log(`EXPRESS: Started on https://${URL}:${PORT}`);
-   });
+console.log('env', process.env.NODE_ENV);
+
+if (process.env.NODE_ENV === 'development') {
+	https
+		.createServer(
+			{
+				key: fs.readFileSync('./src/certs/key.pem'),
+				cert: fs.readFileSync('./src/certs/cert.pem'),
+				passphrase: process.env.CERT_PASSPHRASE,
+			},
+			app
+		)
+		.listen(PORT, URL, () => {
+			console.log(`EXPRESS: Started on https://${URL}:${PORT}`);
+		});
+} else {
+	app.listen(PORT, () => {
+		console.log(`EXPRESS (prod): Start on http://localhost:${PORT}`);
+	});
+}
