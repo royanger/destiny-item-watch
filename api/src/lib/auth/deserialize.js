@@ -7,8 +7,13 @@ export const passportDeserialize = passport => {
             membershipId: id,
          },
       });
-      if (user) {
-         callback(null, user);
+      const membershipTypes = await prisma.destinyMemberships.findMany({
+         where: {
+            userId: user.id,
+         },
+      });
+      if (user && membershipTypes) {
+         callback(null, { ...user, membershipTypes: [...membershipTypes] });
       } else {
          throw new Error('There was a problem deserializing the session');
       }

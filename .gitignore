@@ -14,4 +14,6 @@ node_modules
 /app/styles/tailwind.css
 /app/styles/styles.css
 
-/prisma/migrations
+/api/src/certs
+dist
+dist-ssr

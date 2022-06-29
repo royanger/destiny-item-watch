@@ -8,7 +8,8 @@ export const authCheck = (req, res) => {
       res.status(200).json({
          user: {
             isAuthenticated: true,
-            displayName: req.user.displayName,
+            ...req.user,
+            // displayName: req.user.displayName,
             // userId: req.user.id,
             // email: req.user.email,
             // givenName: req.user.givenName,

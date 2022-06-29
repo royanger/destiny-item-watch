@@ -1,11 +1,11 @@
-import { Link } from '@tanstack/react-location';
+import { Link } from 'react-router-dom';
 
-export default function NavItem({ name, link }: NavItem) {
-   return (
-      <li>
-         <Link className=" mx-4" to={link}>
-            {name}
-         </Link>
-      </li>
-   );
+export function NavItem({ name, link }: NavItem) {
+	return (
+		<li>
+			<Link className=" mx-4" to={link}>
+				{name}
+			</Link>
+		</li>
+	);
 }
