@@ -4,16 +4,16 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { EnglishTranslate, SpanishTranslate } from '~/locales';
 
 i18n
-   .use(LanguageDetector) // Detect system language
-   .use(initReactI18next)
-   .init({
-      resources: {
-         en: { translation: EnglishTranslate },
-         es: { translation: SpanishTranslate },
-      },
-      // lng: 'en', // If you aren't using LanguageDetector define a initial language
-      fallbackLng: 'en',
-      interpolation: { escapeValue: false },
-   });
+	.use(LanguageDetector) // Detect system language
+	.use(initReactI18next)
+	.init({
+		resources: {
+			en: { translation: EnglishTranslate },
+			es: { translation: SpanishTranslate },
+		},
+		// lng: 'en', // If you aren't using LanguageDetector define a initial language
+		fallbackLng: 'en',
+		interpolation: { escapeValue: false },
+	});
 
 export default i18n;
