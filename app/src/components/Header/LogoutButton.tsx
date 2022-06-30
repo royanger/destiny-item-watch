@@ -1,6 +1,7 @@
 export function LogoutButton() {
 	const logoutCallback = () => {
-		window.open(`${$API_URL}/auth/logout`, '_self');
+		// window.open(`${$API_URL}/auth/logout`, '_self');
+		window.open(`${import.meta.env.VITE_API_URL}/auth/logout`, '_self');
 	};
 
 	return (

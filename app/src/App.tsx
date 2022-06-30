@@ -32,7 +32,8 @@ function App() {
 		},
 	};
 	const { isLoading, error, data } = useQuery('auth', () =>
-		fetch(`${$API_URL}/auth/check`, {
+		// fetch(`${$API_URL}/auth/check`, {
+		fetch(`${import.meta.env.VITE_API_URL}/auth/check`, {
 			credentials: 'include',
 		}).then(res => res.json())
 	);
