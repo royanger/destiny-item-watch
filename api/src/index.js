@@ -85,8 +85,6 @@ import { authCheck, authLogout } from './routes/auth.js';
 app.get('/auth/check', authCheck);
 app.get('/auth/logout', authLogout);
 
-console.log('env', process.env.NODE_ENV);
-
 if (process.env.NODE_ENV === 'development') {
 	https
 		.createServer(

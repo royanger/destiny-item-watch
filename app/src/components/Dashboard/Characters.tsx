@@ -6,7 +6,8 @@ import DotSpinner from '~/components/Spinner';
 export const Characters = () => {
 	const config = {
 		headers: {
-			'X-API-Key': $BUNGIE_API_KEY,
+			// 'X-API-Key': $BUNGIE_API_KEY,
+			'X-API-Key': import.meta.env.VITE_API_KEY,
 			'Content-Type': 'application/json',
 		},
 	};
@@ -14,7 +15,11 @@ export const Characters = () => {
 	// TODO
 	// may need to make this authenticated for users who have not made
 	// character information public
-	const { isLoading: loading, error, data } = useQuery('membershipdata', () =>
+	const {
+		isLoading: loading,
+		error,
+		data,
+	} = useQuery('membershipdata', () =>
 		axios({
 			method: 'get',
 			url: `https://www.bungie.net/Platform/Destiny2/3/Profile/4611686018481985948/?components=100,200,201,202,204,205,400,401,401,500`,

@@ -1,6 +1,7 @@
 export const LoginButton = ({ title }: LoginButton) => {
 	const loginCallback = () => {
-		window.open(`${$API_URL}/auth/bungie`, '_self');
+		// window.open(`${$API_URL}/auth/bungie`, '_self');
+		window.open(`${import.meta.env.VITE_API_URL}/auth/bungie`, '_self');
 	};
 
 	// const loginCallbackGitHub = () => {
