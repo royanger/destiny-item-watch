@@ -26,7 +26,7 @@ app.use(
 		secret: SECRET,
 		resave: true,
 		saveUninitialized: true,
-		domain: 'localhost',
+		// domain: 'localhost',
 		store: new PrismaSessionStore(new PrismaClient(), {
 			checkPeriod: 2 * 60 * 1000,
 			dbRecordIdIsSessionId: true,
@@ -41,6 +41,8 @@ app.use(
 		credentials: true,
 	})
 );
+
+console.log('APP URL', process.env.APP_URL);
 
 app.enable('trust proxy');
 
