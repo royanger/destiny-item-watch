@@ -8,6 +8,10 @@ const AuthContext = React.createContext<ContextValue>({
 		id: null,
 		displayName: null,
 		uniqueName: null,
+		selectedDestinyMembershipInfo: {
+			membershipId: null,
+			membershipType: null,
+		},
 	},
 	loading: false,
 });
@@ -21,6 +25,10 @@ type AuthProfile = {
 	id: number | null;
 	displayName: string | null;
 	uniqueName: string | null;
+	selectedDestinyMembershipInfo: {
+		membershipType: string | null;
+		membershipId: number | null;
+	};
 };
 
 const AuthProvider = (props: { children: React.ReactNode }) => {
